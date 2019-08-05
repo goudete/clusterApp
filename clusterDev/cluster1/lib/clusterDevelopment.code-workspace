@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "/Users/enriquegoudet/clusterDev/cluster1"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
