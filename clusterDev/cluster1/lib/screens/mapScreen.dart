@@ -2,8 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:cluster1/main.dart';
-import 'listScreen.dart';
+
 
 
 class mapScreen extends StatelessWidget{
@@ -21,9 +20,9 @@ class mapScreen extends StatelessWidget{
 
   List<Marker> allMarkers = [];
   
-  @override
+  //@override
   void initState(){
-    // super.initState();
+     //super.initState();
     allMarkers.add(Marker(
       markerId: MarkerId('GlorietaCibeles'),
       draggable: false,
@@ -69,10 +68,6 @@ class mapScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
    return Scaffold(
-        appBar: AppBar(
-          title: const Text('cluster'),
-          backgroundColor: Colors.green[700],
-        ),
         body: GoogleMap(
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
@@ -81,6 +76,13 @@ class mapScreen extends StatelessWidget{
           ),
           markers: Set.from(allMarkers)
         ),
+        // floatingActionButton: FloatingActionButton(
+        //   onPressed: (){
+        //     //add onPressed code
+        //   },
+        //   child: Icon(Icons.add),
+        //   backgroundColor: Colors.lightGreenAccent,
+        //   ),
     );
   }
 }

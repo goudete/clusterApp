@@ -21,6 +21,7 @@ class _HomeState extends State<Home>{
     return Scaffold(
       appBar: AppBar(
         title: Text('cluster'),
+        backgroundColor: Colors.orange,
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

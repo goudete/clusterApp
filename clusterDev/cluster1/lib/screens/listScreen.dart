@@ -6,17 +6,12 @@ class listScreen extends StatelessWidget{
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        title: Text('ListScreen'),
+      body: FlatButton(
+        onPressed: (){
+          //flatbutton code 
+        },
+        child: Text('Fucking List'),
         ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Back to Map'),
-          color: Theme.of(context).primaryColor,
-          textColor: Colors.white,
-          onPressed: () => Navigator.pop(context),
-        ),
-      ),
     );
   }
   // Widget _dialogueBuilder(BuildContext context, Marker marker){
