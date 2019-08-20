@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'mapScreen.dart';
 
-class listScreen extends StatelessWidget{
+class ListScreen extends StatelessWidget{
   
   @override
   Widget build(BuildContext context){

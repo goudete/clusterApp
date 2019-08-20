@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
+
 
 
 class MapScreen extends StatefulWidget{
@@ -12,6 +13,8 @@ class MapScreen extends StatefulWidget{
 }
 
 class _MapState extends State<MapScreen>{
+  static const TextStyle optionStyle =
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
 
   GoogleMapController mapController;
 

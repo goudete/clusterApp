@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 #include "GeneratedPluginRegistrant.h"
 #import "GoogleMaps/GoogleMaps.h"
+#import "lib/credentials.dart"
 
 @implementation AppDelegate
 
@@ -8,7 +9,7 @@
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [GeneratedPluginRegistrant registerWithRegistry:self];
   // Override point for customization after application launch.
-  [GMSServices provideAPIKey: @""];
+  [GMSServices provideAPIKey: @"GOOGLE_MAPS_API_KEY"];
   return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
