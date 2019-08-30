@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:flutter_google_places/flutter_google_places.dart';
-
 
 class MapScreen extends StatefulWidget{
   @override
@@ -23,6 +21,51 @@ class _MapState extends State<MapScreen>{
 
   List<Marker> allMarkers = [];
 
+  @override
+  void initState() {
+    super.initState();
+    allMarkers.add(Marker(
+      markerId: MarkerId('GlorietaCibeles'),
+      draggable: false,
+      onTap: (){
+        print('Glorieta');
+      },
+      position: LatLng(19.423697, -99.163113)
+      ));
+    allMarkers.add(Marker(
+      markerId: MarkerId('Buna'),
+      draggable: false,
+      onTap: (){
+        print('Buna');
+      },
+      position: LatLng(19.422177, -99.160513)
+      ));
+    allMarkers.add(Marker(
+      markerId: MarkerId('Blom'),
+      draggable: false,
+      onTap: (){
+        print('Blom');
+      },
+      position: LatLng(19.42847, -99.12766)
+      ));
+    allMarkers.add(Marker(
+      markerId: MarkerId('Almanegra'),
+      draggable: false,
+      onTap: (){
+        print('Almanegra');
+      },
+      position: LatLng(19.385197, -99.155231)
+      ));
+    allMarkers.add(Marker(
+      markerId: MarkerId('local3'),
+      draggable: false,
+      onTap: (){
+        print('local3');
+      },
+      position: LatLng(19.358267, -99.269344)
+      ));
+  }
+
     @override
   Widget build(BuildContext context){
    return Scaffold(
@@ -32,54 +75,8 @@ class _MapState extends State<MapScreen>{
             target: _center,
             zoom: 11.0,
           ),
-          //markers: Set.from(allMarkers)
+          markers: Set.from(allMarkers)
         ),
     );
   }
-  
-  // //@override
-  // void initState(){
-  //    //super.initState();
-  //   allMarkers.add(Marker(
-  //     markerId: MarkerId('GlorietaCibeles'),
-  //     draggable: false,
-  //     onTap: (){
-  //       print('Glorieta');
-  //     },
-  //     position: LatLng(19.423697, -99.163113)
-  //     ));
-  //   allMarkers.add(Marker(
-  //     markerId: MarkerId('Buna'),
-  //     draggable: false,
-  //     onTap: (){
-  //       print('Buna');
-  //     },
-  //     position: LatLng(19.422177, -99.160513)
-  //     ));
-  //   allMarkers.add(Marker(
-  //     markerId: MarkerId('Blom'),
-  //     draggable: false,
-  //     onTap: (){
-  //       print('Blom');
-  //     },
-  //     position: LatLng(19.42847, -99.12766)
-  //     ));
-  //   allMarkers.add(Marker(
-  //     markerId: MarkerId('Almanegra'),
-  //     draggable: false,
-  //     onTap: (){
-  //       print('Almanegra');
-  //     },
-  //     position: LatLng(19.385197, -99.155231)
-  //     ));
-  //   allMarkers.add(Marker(
-  //     markerId: MarkerId('local3'),
-  //     draggable: false,
-  //     onTap: (){
-  //       print('local3');
-  //     },
-  //     position: LatLng(19.358267, -99.269344)
-  //     ));
-  // }
-  
 }

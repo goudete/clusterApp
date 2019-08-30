@@ -1,34 +1,54 @@
+import 'package:cluster1/models/PlaceModel.dart';
+import 'package:cluster1/models/placeModel.dart';
+import 'package:cluster1/services/placeService.dart';
 import 'package:flutter/material.dart';
-import 'mapScreen.dart';
 
-class ListScreen extends StatelessWidget{
-  
+
+class ListScreen extends StatefulWidget{
+@override
+State<StatefulWidget> createState() {
+    return new ListScreenState();
+  }
+}
+
+class ListScreenState extends State<ListScreen>{
   @override
   Widget build(BuildContext context){
-    return Scaffold(
-      body: FlatButton(
-        onPressed: (){
-          //flatbutton code 
-        },
-        child: Text('Fucking List'),
-        ),
+    return new Scaffold(
+      body: _createContent(),
     );
   }
-  // Widget _dialogueBuilder(BuildContext context, Marker marker){
-  //   return SimpleDialog(children: [Container(width: 80.0, height: 80.0)]);
-  // }
 
-  // Widget _listItemBuilder(BuildContext context, int index){
-  //   return new GestureDetector(
-  //     onTap: () => showDialog(
-  //       context: context,
-  //       builder: (context) => _dialogueBuilder(context, allMarkers[index])),
-  //     child: Container(
-  //       padding: const EdgeInsets.only(left: 16.0),
-  //       alignment: Alignment.centerLeft,
-  //       child: Text(allMarkers[index].markerId.value,
-  //         style: Theme.of(context).textTheme.headline),
-  //       ),
-  //     );
-  // }
+  Widget _createContent(){
+    if(_places == null){
+      return new Center(
+        child: new CircularProgressIndicator(),
+      );
+    }
+
+    else{
+      return new ListView(
+        children: _places.map((f){
+          return new Card( child:
+            new ListTile(
+            title: new Text(f.location),
+            leading: new Image.network(f.icon),
+            subtitle: new Text(f.vicinity),
+          ));
+        }).toList(),
+      );
+    }
+  }
+
+List _places;
+  @override void initState(){
+    super.initState();
+
+    PlacesService.get().getNearbyPlaces().then((data) async {
+      
+      this.setState((){
+        _places = data;
+      });
+    });
+  }
 }
