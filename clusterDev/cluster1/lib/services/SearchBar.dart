@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class SearchBar extends SearchDelegate<String>{
 
-  Query userQuery;
+  Query userQuery = new Query(query);
 
   final coffeeshops = [
   "Kumquat",

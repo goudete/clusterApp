@@ -17,7 +17,7 @@ class PlacesService{
   //Create Place object with JSON response
   //use lat and lng to Map and then display other details in ListView
 
-  final String searchUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=19.4326,99.1332&key=$PLACES_API_KEY";
+  final String searchUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=19.4326,-99.1332&key=$PLACES_API_KEY";
 
   Future<List<Place>> getNearbyPlaces() async{
     
@@ -25,7 +25,7 @@ class PlacesService{
     var places = <Place>[];
     
     List data = json.decode(response.body)["results"];
-
+    print(data);
     data.forEach((f) => places.add(new Place(f["icon"],f["name"], f["location"], f["rating"], f["vicinity"], f["place_id"])));
   }
 }

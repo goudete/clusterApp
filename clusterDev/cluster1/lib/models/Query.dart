@@ -1,5 +1,5 @@
 class Query {
-  String query;
+  String userQuery;
 
-  Query(this.query);
+  Query(this.userQuery);
 }
