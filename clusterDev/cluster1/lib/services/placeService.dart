@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:cluster1/credentials.dart';
+import 'SearchBar.dart';
 
 class PlacesService{
   static final _service = new PlacesService();
@@ -11,11 +12,12 @@ class PlacesService{
     return _service;
   }  
 
-  //Currently using Nearby Search API
-  //Need to change to Place Search API, store Place details using Place class and use lat and lng to Map and then display other details in ListView
-  //To use Place Search, need to create SearchBar to store input and run through API.
+  //Pass query from SearchBar here
+  //Call Place Search API with query
+  //Create Place object with JSON response
+  //use lat and lng to Map and then display other details in ListView
 
-  final String searchUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.087586,-118.206514&radius=500&fields=formatted_address,geometry,icon,name&key=$PLACES_API_KEY";
+  final String searchUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=19.4326,99.1332&key=$PLACES_API_KEY";
 
   Future<List<Place>> getNearbyPlaces() async{
     
@@ -24,7 +26,7 @@ class PlacesService{
     
     List data = json.decode(response.body)["results"];
 
-    data.forEach((f) => places.add(new Place(f["location"],f["icon"], f["name"], f["vicinity"], f["place_id"])));
+    data.forEach((f) => places.add(new Place(f["icon"],f["name"], f["location"], f["rating"], f["vicinity"], f["place_id"])));
   }
 }
 

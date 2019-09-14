@@ -1,4 +1,5 @@
 import 'package:cluster1/screens/listScreen.dart';
+import 'package:cluster1/services/SearchBar.dart';
 import 'package:flutter/material.dart';
 import 'mapScreen.dart';
 
@@ -21,6 +22,11 @@ class _HomeState extends State<Home>{
     return Scaffold(
       appBar: AppBar(
         title: Text('cluster'),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.search), onPressed: () {
+            showSearch(context: context, delegate: SearchBar());
+          },)
+        ],
         backgroundColor: Colors.orange,
       ),
       body: _children[_currentIndex],
@@ -41,6 +47,7 @@ class _HomeState extends State<Home>{
     );
   }
 
+  
   void onTabTapped(int index){
     setState(() {
       _currentIndex = index;
