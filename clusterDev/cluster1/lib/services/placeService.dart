@@ -1,9 +1,12 @@
-import 'package:cluster1/models/placeModel.dart';
 import 'dart:async';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:cluster1/credentials.dart';
-import 'SearchBar.dart';
+import 'package:cluster1/models/placeModel.dart';
+import 'package:geocoder/geocoder.dart';
+import 'package:google_maps_webservice/places.dart';
+
+GoogleMapsPlaces _places = GoogleMapsPlaces(apiKey: PLACES_API_KEY);
+//PlaceStorage allPlaces = new PlaceStorage();
+List<Place> userPlaces = new List<Place>();
 
 class PlacesService{
   static final _service = new PlacesService();
@@ -12,21 +15,22 @@ class PlacesService{
     return _service;
   }  
 
-  //Pass query from SearchBar here
-  //Call Place Search API with query
-  //Create Place object with JSON response
-  //use lat and lng to Map and then display other details in ListView
+  Future<Null> displayPrediction(Prediction p) async{
+    if(p != null){
+      PlacesDetailsResponse detail =
+      await _places.getDetailsByPlaceId(p.placeId);
 
-  final String searchUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=19.4326,-99.1332&key=$PLACES_API_KEY";
+      String name = detail.result.name;
+      String placeId = p.placeId;
+      double lat = detail.result.geometry.location.lat;
+      double lng = detail.result.geometry.location.lng;
 
-  Future<List<Place>> getNearbyPlaces() async{
-    
-    var response = await http.get(searchUrl, headers:{"Accept":"application/json"});
-    var places = <Place>[];
-    
-    List data = json.decode(response.body)["results"];
-    print(data);
-    data.forEach((f) => places.add(new Place(f["icon"],f["name"], f["location"], f["rating"], f["vicinity"], f["place_id"])));
+      Place location = new Place(name, placeId, lat, lng);
+      userPlaces.add(location);
+      print("paceId: " + placeId);
+      print("lat: " + lat.toString());
+      print("lng: " + lng.toString());
+      print("userPlaces length: " + userPlaces.length.toString());
+    }
   }
 }
-

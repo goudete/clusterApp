@@ -1,12 +1,23 @@
 class Place{
-  String icon;
   String name;
-  String location;
-  String rating;
-  String vicinity;
   String place_id;
+  double lat;
+  double lng;
+  
+ Place(this.name, this.place_id, this.lat, this.lng);
 
-  //Location is nested. Take this into account to extract lat & lng.
+}
 
-  Place(this.icon, this.name, this.location, this.rating, this.vicinity, this.place_id);
+class PlaceStorage{
+  PlaceStorage({this.places});
+
+  List<Place> places = new List<Place>();
+  
+  List<Place> getplaces(){
+    return this.places;
+  }
+
+  Future addPlace(Place p){
+    this.places.add(p);
+  }
 }

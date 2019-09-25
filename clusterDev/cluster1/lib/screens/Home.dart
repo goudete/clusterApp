@@ -1,7 +1,12 @@
 import 'package:cluster1/screens/listScreen.dart';
-import 'package:cluster1/services/SearchBar.dart';
 import 'package:flutter/material.dart';
 import 'mapScreen.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:cluster1/credentials.dart';
+import 'package:google_maps_webservice/places.dart';
+import 'package:cluster1/services/placeService.dart';
+import 'package:cluster1/models/placeModel.dart';
+
 
 class Home extends StatefulWidget{
   @override
@@ -23,11 +28,13 @@ class _HomeState extends State<Home>{
       appBar: AppBar(
         title: Text('cluster'),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.search), onPressed: () {
-            showSearch(context: context, delegate: SearchBar());
+          IconButton(icon: Icon(Icons.search), onPressed: () async {
+            Prediction p = await PlacesAutocomplete.show(
+              context: context, apiKey: PLACES_API_KEY, mode: Mode.overlay);
+            await PlacesService.get().displayPrediction(p);
           },)
         ],
-        backgroundColor: Colors.orange,
+        backgroundColor: Colors.lightBlue,
       ),
       body: _children[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
